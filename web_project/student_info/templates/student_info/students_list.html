@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students List</title>
+</head>
+<body>
+{% block content %}
+<div>
+    <div>
+        <form action = "/student_info/send/" method="post"  >
+            {% csrf_token %}
+                <input type="text"
+                       name="name"
+                       placeholder="write name"> <br>
+                <input type="text"
+                       name="student_num"
+                       placeholder="write Student#"><br>
+                <input type="text"
+                       name="phone_num"
+                       placeholder="write phone#"><br>
+                <input type="text"
+                       name="email"
+                       placeholder="write email"><br>
+                <input type="submit"
+                       value="저장"><br>
+
+        </form>
+    </div>
+</div><br>
+
+<table cellspacing="1" width="1100" border="1">
+    <tr>
+        <td width="50"><p align="center">NO.</p> </td>
+        <td width="200"><p align="center">Name</p> </td>
+        <td width="200"><p align="center">Student#</p> </td>
+        <td width="400"><p align="center">Phone#</p> </td>
+        <td width="400"><p align="center">Email</p> </td>
+    </tr>
+    {% if students_list %}
+    <ul>
+        {% for student in students_list %}
+        <tr>
+            <td width="50"><p align="center">{{ forloop.counter }}</p> </td>
+            <td width="200"><p align="center">{{ student.name }}</p> </td>
+            <td width="200"><p align="center">{{ student.student_num }}</p> </td>
+            <td width="400"><p align="center">{{ student.phone_num }}</p> </td>
+            <td width="400"><p align="center">{{ student.email }}</p> </td>
+        </tr>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No Data.</p>
+    {% endif %}
+</table>
+{% endblock %}
+</body>
+</html>
