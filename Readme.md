@@ -3,6 +3,7 @@ you should use 1.7v 1.7v 쓰는게 좋아요 간단한 장고 앱으로 이름�
 mysql db 컨테이너와 통신하여 저장된 정보를 출력해주는 간단한 앱입니다.
 
 dockerfile
+
 FROM qhxmaoflr/ftp_nginx:1v
 
 RUN apt-get update && \
@@ -44,6 +45,7 @@ RUN chmod 777 /home/ubuntu/test_web/start.sh
 ENTRYPOINT /home/ubuntu/test_web/start.sh $settings_dir $DB $DB_HOST $DB_NAME $DB_USER $DB_PASSWORD $APP_PORT
 
 django_app_config.sh
+
 #!/bin/bash
 
 sed -i "/ENGINE/ s/mysql/$2/" $1
