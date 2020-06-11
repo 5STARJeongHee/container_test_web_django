@@ -1,0 +1,52 @@
+version: '3.0'
+
+services:
+
+db:
+
+      image: mysql
+
+      restart: always
+
+      volumes:
+
+           - /home:/home/ailab/DB
+
+      environment:
+
+          - MYSQL_ROOT_PASSWORD=0000
+
+          - MYSQL_DATABASE=student_info
+
+          - MYSQL_USER=heyhey
+
+          - MYSQL_PASSWORD=0000
+
+
+django:
+
+      image: qhxmaoflr/django_app:1.7v
+
+      restart: always
+
+      environment:
+
+          - DB=mysql
+
+          - DB_HOST=db
+
+          - DB_NAME=student_info
+
+          - DB_PASSWORD=0000
+
+          - DB_USER=heyhey
+
+      ports:
+
+          - "60000:8000"
+
+          - "10000-11000:10000-11000"
+
+          - "8080:80"
+
+          - "60001-60002:20-21"
