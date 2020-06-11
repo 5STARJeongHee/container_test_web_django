@@ -26,13 +26,13 @@ bin/activate && \
 
 pip install mysqlclient django
 
-ADD django_app_config.sh /home/ubuntu/test_web
+ADD ~/django_app_config.sh /home/ubuntu/test_web
 
 RUN chmod 777 /home/ubuntu/test_web/django_app_config.sh
 
 ENV DB="mysql" DB_HOST="mysql" DB_NAME="student_list" DB_USER="root" DB_PASSWORD="0000" settings_dir="container_test_web_django/web_project/Project1/settings.py" APP_PORT="8000"
 
-ADD start.sh /home/ubuntu/test_web
+ADD ~/start.sh /home/ubuntu/test_web
 
 RUN chmod 777 /home/ubuntu/test_web/start.sh
 
