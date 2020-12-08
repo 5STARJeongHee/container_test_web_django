@@ -6,7 +6,7 @@ mysql db 컨테이너와 통신하여 저장된 정보를 출력해주는 간단
 
 # dockerfile
 
-~~~
+~~~DOCKERFILE
 FROM qhxmaoflr/ftp_nginx:1v
 
 RUN apt-get update && \
@@ -52,7 +52,7 @@ ENTRYPOINT /home/ubuntu/test_web/start.sh $settings_dir $DB $DB_HOST $DB_NAME $D
 
 # django_app_config.sh
 
-~~~
+~~~bash
 #!/bin/bash
 
 sed -i "/ENGINE/ s/mysql/$2/" $1
@@ -69,7 +69,7 @@ sed -i "71,90 s/0000/$6/g" $1
 
 # start.sh
 
-~~~
+~~~bash
 #!/bin/bash
 
 /home/ubuntu/test_web/django_app_config_sh $1 $2 $3 $4 $5 $6
@@ -93,7 +93,7 @@ sudo docker run -e DB_NAME=student -e DB_PASSRD=0000 --link=mysql --rm -it -p 60
 
 # docker-compose.yml
 
-~~~
+~~~yaml
 version: '3.0'
 
 services:
