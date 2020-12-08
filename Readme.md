@@ -6,7 +6,7 @@ mysql db 컨테이너와 통신하여 저장된 정보를 출력해주는 간단
 
 # dockerfile
 
-'''
+'''dockerfile
 FROM qhxmaoflr/ftp_nginx:1v
 
 RUN apt-get update && \
@@ -51,7 +51,8 @@ ENTRYPOINT /home/ubuntu/test_web/start.sh $settings_dir $DB $DB_HOST $DB_NAME $D
 -----------------------------------------------------------------------------------
 
 # django_app_config.sh
-'''
+
+'''bash
 #!/bin/bash
 
 sed -i "/ENGINE/ s/mysql/$2/" $1
@@ -67,7 +68,8 @@ sed -i "71,90 s/0000/$6/g" $1
 ------------------------------------------------------------------------------------------------------
 
 # start.sh
-'''
+
+'''bash
 #!/bin/bash
 
 /home/ubuntu/test_web/django_app_config_sh $1 $2 $3 $4 $5 $6
@@ -78,6 +80,7 @@ python container_test_web_django/web_project/manage.py migrate
 
 python container_test_web_django/web_project/manage.py runserver 0:$7
 '''
+
 ## usage
 
 먼저 mysql 서버 컨테이너를 허브에서 받아서 실행 sudo docker run --name mysql -v /fordocker:/home/ailab/DB -e MYSQL_ROOT_PASSWORD='0000' -dit mysql 그 뒤 db 컨테이너에 접속하 database 생성
@@ -89,7 +92,8 @@ sudo docker run -e DB_NAME=student -e DB_PASSRD=0000 --link=mysql --rm -it -p 60
 옵션 DB_ HOST(--link 옵션으로 연결할 db 컨테이너 이름), DB_NAME(db서버의 데이터베이스 이름), DB_USER(DB 유저 이름 기본 root), DB_PASSWORD(db 패스워드)
 
 # docker-compose.yml
-'''
+
+'''yaml
 version: '3.0'
 
 services:
